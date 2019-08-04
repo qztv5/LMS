@@ -36,7 +36,7 @@ public class BookDao<T> implements DAO{
 	@Override
 	public void Update(Object t) throws IOException {
 		List<Book> authors = (List<Book>) t;
-		BufferedWriter writer = new BufferedWriter(new FileWriter("./resources/author"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter("./resources/book"));
 		for(Iterator<Book> i = authors.iterator(); i.hasNext();)
 		{
 		Book b = i.next();

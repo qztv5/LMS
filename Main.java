@@ -14,11 +14,12 @@ public class Main {
 		try {
 			List<Author> authors =aDao.getAll();
 			List<Book> books = bDao.getAll();
-			authors.forEach(System.out::println);
+			//authors.forEach(System.out::println);
 			books.forEach(System.out::println);
-			menu.mainMenu(authors);
-			authors.forEach(System.out::println);
+			menu.mainMenu(authors, books);
+			books.forEach(System.out::println);
 			aDao.Update(authors);
+			bDao.Update(books);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
