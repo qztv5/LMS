@@ -139,9 +139,17 @@ public class BookService implements Service {
 				System.out.println("Enter the new name, Id number, author Id, publisher id for the Book");
 				if(update.hasNext())
 				{
-					b.setName(update.next());
+					String name = update.next();
+					while(update.hasNext() && !update.hasNextInt())
+					{
+						name += " " + update.next();
+					}
+					b.setName(name);
+					if(update.hasNextInt())
 					b.setBookId(update.nextInt());
+					if(update.hasNextInt())
 					b.setAuthorId(update.nextInt());
+					if(update.hasNextInt())
 					b.setPublisherId(update.nextInt());
 					bList.set(pos, b);
 				}

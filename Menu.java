@@ -7,8 +7,9 @@ public class Menu {
 	Scanner in = new Scanner(System.in);
 	AuthorService as = new AuthorService();
 	BookService bs = new BookService();
+	PublisherService ps = new PublisherService();
 	
-	public void mainMenu(List<Author> aList, List<Book> bList)
+	public void mainMenu(List<Author> aList, List<Book> bList, List<Publisher> pList)
 	{
 		
 		int choice;
@@ -23,16 +24,16 @@ public class Menu {
 				switch (choice)
 				{
 				case 1:
-					addMenu(aList, bList);
+					addMenu(aList, bList, pList);
 					break;
 				case 2:
-					removeMenu(aList, bList);
+					removeMenu(aList, bList, pList);
 					break;
 				case 3:
-					retireveMenu(aList, bList);
+					retireveMenu(aList, bList, pList);
 					break;
 				case 4:
-					updateMenu(aList, bList);
+					updateMenu(aList, bList, pList);
 					break;
 				default:
 					System.out.println("The number was not between 1 and 4");
@@ -44,7 +45,7 @@ public class Menu {
 			}
 		}
 	
-	public void addMenu(List<Author> aList, List<Book> bList)
+	public void addMenu(List<Author> aList, List<Book> bList, List<Publisher> pList)
 	{
 		System.out.println("Enter 1 to add an Author");
 		System.out.println("Enter 2 to add a Book");
@@ -64,6 +65,7 @@ public class Menu {
 					bs.Add(bList);
 					break;
 				case 3:
+					ps.Add(pList);
 					break;
 				default:
 					System.out.println("The number was not between 1 and 3");
@@ -73,7 +75,7 @@ public class Menu {
 		
 	}
 	
-	public void removeMenu(List<Author> aList, List<Book> bList)
+	public void removeMenu(List<Author> aList, List<Book> bList, List<Publisher> pList)
 	{
 		System.out.println("Enter 1 to remove an Author");
 		System.out.println("Enter 2 to remove a Book");
@@ -92,6 +94,7 @@ public class Menu {
 					bs.Remove(bList);
 					break;
 				case 3:
+					ps.Remove(pList);
 					break;
 				default:
 					System.out.println("The number was not between 1 and 3");
@@ -101,7 +104,7 @@ public class Menu {
 		
 	}
 	
-	public void retireveMenu(List<Author> aList, List<Book> bList)
+	public void retireveMenu(List<Author> aList, List<Book> bList, List<Publisher> pList)
 	{
 		System.out.println("Enter 1 to retireve an Author");
 		System.out.println("Enter 2 to retireve a Book");
@@ -119,6 +122,7 @@ public class Menu {
 					bs.Retrieve(bList);
 					break;
 				case 3:
+					ps.Retrieve(pList);
 					break;
 				default:
 					System.out.println("The number was not between 1 and 3");
@@ -126,7 +130,7 @@ public class Menu {
 			}
 	}
 	
-	public void updateMenu(List<Author> aList, List<Book> bList)
+	public void updateMenu(List<Author> aList, List<Book> bList, List<Publisher> pList)
 	{
 		System.out.println("Enter 1 to update an Author");
 		System.out.println("Enter 2 to update a Book");
@@ -144,6 +148,7 @@ public class Menu {
 					bs.Update(bList);
 					break;
 				case 3:
+					ps.Update(pList);
 					break;
 				default:
 					System.out.println("The number was not between 1 and 3");
