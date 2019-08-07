@@ -1,14 +1,21 @@
-package com.Anderson.LMS;
+package com.Anderson.LMS.Service;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
-public class BookService implements Service {
+import com.Anderson.LMS.Author;
+import com.Anderson.LMS.Book;
+import com.Anderson.LMS.Publisher;
 
-	@Override
-	public void Add(Object t) {
+public class BookService{
+
+
+	public void Add(Object t, Object a, Object p) {
 		List<Book> bList = (List<Book>) t;
+		List<Author> aList = (List <Author>) a;
+		List<Publisher> pList = (List <Publisher>) p;
 		Scanner add = new Scanner(System.in);
 		System.out.println("Enter the Book Name followed by an id number, author id, and publisher id");
 		if(add.hasNext())
@@ -26,13 +33,27 @@ public class BookService implements Service {
 			b.setBookId(add.nextInt());
 			b.setAuthorId(add.nextInt());
 			b.setPublisherId(add.nextInt());
+			List<Author>  aTemp = aList.stream().filter(au -> au.getId() == b.getAuthorId()).collect(Collectors.toList());
+			if(aTemp.isEmpty())
+			{
+				System.out.println("Author not found please add a new author");
+				AuthorService as = new AuthorService();
+				as.Add(aList);
+			}
+			List<Publisher>  pTemp = pList.stream().filter(pu -> pu.getId() == b.getPublisherId()).collect(Collectors.toList());
+			if(pTemp.isEmpty())
+			{
+				System.out.println("Publisher not found please add a new publisher");
+				PublisherService ps = new PublisherService();
+				ps.Add(pList);
+			}
 			bList.add(b);
-			bList.forEach(System.out::println);
+			//bList.forEach(System.out::println);
 		}
 		
 	}
 
-	@Override
+
 	public void Remove(Object t) {
 		List<Book> bList = (List<Book>) t;
 		Scanner remove = new Scanner(System.in);
@@ -52,16 +73,17 @@ public class BookService implements Service {
 			b.setAuthorId(remove.nextInt());
 			b.setPublisherId(remove.nextInt());
 			bList.remove(b);
-			bList.forEach(System.out::println);
+			//bList.forEach(System.out::println);
 			
 		}
 	}
 
-	@Override
+
 	public void Retrieve(Object t) {
 		List<Book> bList = (List<Book>) t;
 		Scanner retrieve = new Scanner(System.in);
-		System.out.println("Enter the Book Name or id number");
+		System.out.println("Enter the Book Name or id number to retrieve a specific book");
+		System.out.println("Enter all to retrieve all books");
 		if(retrieve.hasNextInt())
 		{
 			int id = retrieve.nextInt();
@@ -80,6 +102,11 @@ public class BookService implements Service {
 		{
 			String name = retrieve.nextLine();
 			//System.out.println(name);
+			if (name.equalsIgnoreCase("all"))
+			{
+				bList.forEach(System.out::println);
+				return;
+			}
 			for(Iterator<Book> i = bList.iterator(); i.hasNext();)
 			{
 				Book b = i.next();
@@ -95,7 +122,7 @@ public class BookService implements Service {
 		
 	}
 
-	@Override
+
 	public void Update(Object t) {
 		List<Book> bList = (List<Book>) t;
 		Book b = new Book();
@@ -104,7 +131,7 @@ public class BookService implements Service {
 		System.out.println("Enter the Book Name or id number");
 		if(update.hasNextInt())
 		{
-			System.out.println("In if of update");
+			//System.out.println("In if of update");
 			int id = update.nextInt();
 			for(Iterator<Book> i = bList.iterator(); i.hasNext();)
 			{
@@ -117,7 +144,7 @@ public class BookService implements Service {
 		}
 		else
 		{
-			System.out.println("In else in update");
+			//System.out.println("In else in update");
 			String name = update.nextLine();
 			for(Iterator<Book> i = bList.iterator(); i.hasNext();)
 			{

@@ -3,6 +3,12 @@ package com.Anderson.LMS;
 import java.util.List;
 import java.util.Scanner;
 
+import com.Anderson.LMS.Service.AuthorService;
+import com.Anderson.LMS.Service.BookService;
+import com.Anderson.LMS.Service.PublisherService;
+
+
+
 public class Menu {
 	Scanner in = new Scanner(System.in);
 	AuthorService as = new AuthorService();
@@ -62,7 +68,7 @@ public class Menu {
 					as.Add(aList);
 					break;
 				case 2:
-					bs.Add(bList);
+					bs.Add(bList, aList, pList);
 					break;
 				case 3:
 					ps.Add(pList);
@@ -88,13 +94,13 @@ public class Menu {
 				switch (choice)
 				{
 				case 1:
-					as.Remove(aList);
+					as.Remove(aList, bList);
 					break;
 				case 2:
 					bs.Remove(bList);
 					break;
 				case 3:
-					ps.Remove(pList);
+					ps.Remove(pList, bList);
 					break;
 				default:
 					System.out.println("The number was not between 1 and 3");

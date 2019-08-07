@@ -1,12 +1,16 @@
-package com.Anderson.LMS;
+package com.Anderson.LMS.Service;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
-public class AuthorService implements Service {
+import com.Anderson.LMS.Author;
+import com.Anderson.LMS.Book;
 
-	@Override
+public class AuthorService{
+
+	
 	public void Add(Object t) {
 		List<Author> aList = (List<Author>) t;
 		Scanner add = new Scanner(System.in);
@@ -23,9 +27,10 @@ public class AuthorService implements Service {
 		
 	}
 
-	@Override
-	public void Remove(Object t) {
+
+	public void Remove(Object t, Object b) {
 		List<Author> aList = (List<Author>) t;
+		List<Book> bList = (List<Book>) b;
 		Scanner remove = new Scanner(System.in);
 		System.out.println("Enter the Author Name and id number");
 		if(remove.hasNext())
@@ -35,16 +40,24 @@ public class AuthorService implements Service {
 			if(remove.hasNextInt())
 				a.setId(remove.nextInt());
 			aList.remove(a);
+			List<Book>  temp = bList.stream().filter(bk -> bk.getAuthorId() == a.getId()).collect(Collectors.toList());
+			//bList.forEach(System.out::println);
+			//System.out.println();
+			temp.forEach(System.out::println);
+			//System.out.println();
+			bList.removeAll(temp);
+			//bList.forEach(System.out::println);
 			//aList.forEach(System.out::println);
 			
 		}
 	}
 
-	@Override
+
 	public void Retrieve(Object t) {
 		List<Author> aList = (List<Author>) t;
 		Scanner retrieve = new Scanner(System.in);
-		System.out.println("Enter the Author Name or id number");
+		System.out.println("Enter the Author Name or id number ot retreive a specific author");
+		System.out.println("Enter all to retreive all authors");
 		if(retrieve.hasNextInt())
 		{
 			int id = retrieve.nextInt();
@@ -62,11 +75,16 @@ public class AuthorService implements Service {
 		else 
 		{
 			String name = retrieve.next();
-			System.out.println(name);
+			if (name.equalsIgnoreCase("all"))
+			{
+				aList.forEach(System.out::println);
+				return;
+			}
+			//System.out.println(name);
 			for(Iterator<Author> i = aList.iterator(); i.hasNext();)
 			{
 				Author a = i.next();
-				System.out.println(a.getName());
+				//System.out.println(a.getName());
 				if(a.getName().equalsIgnoreCase(name))
 				{
 					System.out.println(a);
@@ -78,7 +96,7 @@ public class AuthorService implements Service {
 		
 	}
 
-	@Override
+
 	public void Update(Object t) {
 		List<Author> aList = (List<Author>) t;
 		Scanner update = new Scanner(System.in);

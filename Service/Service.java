@@ -1,4 +1,4 @@
-package com.Anderson.LMS;
+package com.Anderson.LMS.Service;
 
 public interface Service<T> {
 	

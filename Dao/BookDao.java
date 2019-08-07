@@ -1,4 +1,4 @@
-package com.Anderson.LMS;
+package com.Anderson.LMS.Dao;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import com.Anderson.LMS.Book;
 
 public class BookDao<T> implements DAO{
 	
