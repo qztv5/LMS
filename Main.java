@@ -30,7 +30,7 @@ public class Main {
 			bDao.Update(books);
 			pDao.Update(publishers);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("The database could not be accessed");
 		}
 	}
 		

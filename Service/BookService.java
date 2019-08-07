@@ -34,6 +34,7 @@ public class BookService{
 			b.setAuthorId(add.nextInt());
 			b.setPublisherId(add.nextInt());
 			List<Author>  aTemp = aList.stream().filter(au -> au.getId() == b.getAuthorId()).collect(Collectors.toList());
+			aTemp.forEach(System.out::println);
 			if(aTemp.isEmpty())
 			{
 				System.out.println("Author not found please add a new author");
