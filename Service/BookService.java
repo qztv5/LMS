@@ -12,10 +12,7 @@ import com.Anderson.LMS.Publisher;
 public class BookService{
 
 
-	public void Add(Object t, Object a, Object p) {
-		List<Book> bList = (List<Book>) t;
-		List<Author> aList = (List <Author>) a;
-		List<Publisher> pList = (List <Publisher>) p;
+	public void Add(List<Book> bList, List<Author> aList, List<Publisher> pList) {
 		Scanner add = new Scanner(System.in);
 		System.out.println("Enter the Book Name followed by an id number, author id, and publisher id");
 		if(add.hasNext())
@@ -31,10 +28,12 @@ public class BookService{
 			b.setName(name);
 			if(add.hasNextInt())
 			b.setBookId(add.nextInt());
+			if(add.hasNextInt())
 			b.setAuthorId(add.nextInt());
+			if(add.hasNextInt())
 			b.setPublisherId(add.nextInt());
 			List<Author>  aTemp = aList.stream().filter(au -> au.getId() == b.getAuthorId()).collect(Collectors.toList());
-			aTemp.forEach(System.out::println);
+			//aTemp.forEach(System.out::println);
 			if(aTemp.isEmpty())
 			{
 				System.out.println("Author not found please add a new author");
@@ -55,8 +54,7 @@ public class BookService{
 	}
 
 
-	public void Remove(Object t) {
-		List<Book> bList = (List<Book>) t;
+	public void Remove(List<Book> bList) {
 		Scanner remove = new Scanner(System.in);
 		System.out.println("Enter the Book Name, id number, author id, and publisher id");
 		if(remove.hasNext())
@@ -80,8 +78,7 @@ public class BookService{
 	}
 
 
-	public void Retrieve(Object t) {
-		List<Book> bList = (List<Book>) t;
+	public void Retrieve(List<Book> bList) {
 		Scanner retrieve = new Scanner(System.in);
 		System.out.println("Enter the Book Name or id number to retrieve a specific book");
 		System.out.println("Enter all to retrieve all books");
@@ -124,8 +121,7 @@ public class BookService{
 	}
 
 
-	public void Update(Object t) {
-		List<Book> bList = (List<Book>) t;
+	public void Update(List<Book> bList) {
 		Book b = new Book();
 		int pos =-1;
 		Scanner update = new Scanner(System.in);

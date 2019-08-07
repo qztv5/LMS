@@ -11,8 +11,7 @@ import com.Anderson.LMS.Book;
 public class AuthorService{
 
 	
-	public void Add(Object t) {
-		List<Author> aList = (List<Author>) t;
+	public void Add(List<Author> aList) {
 		Scanner add = new Scanner(System.in);
 		System.out.println("Enter the Author Name followed by an id number");
 		if(add.hasNext())
@@ -28,9 +27,7 @@ public class AuthorService{
 	}
 
 
-	public void Remove(Object t, Object b) {
-		List<Author> aList = (List<Author>) t;
-		List<Book> bList = (List<Book>) b;
+	public void Remove(List<Author> aList, List<Book> bList) {
 		Scanner remove = new Scanner(System.in);
 		System.out.println("Enter the Author Name and id number");
 		if(remove.hasNext())
@@ -43,7 +40,7 @@ public class AuthorService{
 			List<Book>  temp = bList.stream().filter(bk -> bk.getAuthorId() == a.getId()).collect(Collectors.toList());
 			//bList.forEach(System.out::println);
 			//System.out.println();
-			temp.forEach(System.out::println);
+			//temp.forEach(System.out::println);
 			//System.out.println();
 			bList.removeAll(temp);
 			//bList.forEach(System.out::println);
@@ -53,8 +50,7 @@ public class AuthorService{
 	}
 
 
-	public void Retrieve(Object t) {
-		List<Author> aList = (List<Author>) t;
+	public void Retrieve(List<Author> aList) {
 		Scanner retrieve = new Scanner(System.in);
 		System.out.println("Enter the Author Name or id number ot retreive a specific author");
 		System.out.println("Enter all to retreive all authors");
@@ -97,8 +93,7 @@ public class AuthorService{
 	}
 
 
-	public void Update(Object t) {
-		List<Author> aList = (List<Author>) t;
+	public void Update(List<Author> aList) {
 		Scanner update = new Scanner(System.in);
 		System.out.println("Enter the Author Name and id number");
 		if(update.hasNext())

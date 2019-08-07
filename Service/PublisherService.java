@@ -11,8 +11,7 @@ import com.Anderson.LMS.Publisher;
 public class PublisherService {
 
 
-	public void Add(Object t) {
-		List<Publisher> pList = (List<Publisher>) t;
+	public void Add(List<Publisher> pList) {
 		Scanner add = new Scanner(System.in);
 		System.out.println("Enter the Publisher Name followed by an id number, and an address");
 		if(add.hasNext())
@@ -36,9 +35,7 @@ public class PublisherService {
 		
 	}
 
-	public void Remove(Object t, Object b) {
-		List<Publisher> pList = (List<Publisher>) t;
-		List<Book> bList = (List<Book>) b;
+	public void Remove(List<Publisher> pList, List<Book> bList) {
 		Scanner remove = new Scanner(System.in);
 		System.out.println("Enter the Publisher Name, id number, and address");
 		if(remove.hasNext())
@@ -72,8 +69,7 @@ public class PublisherService {
 		}
 	}
 
-	public void Retrieve(Object t) {
-		List<Publisher> pList = (List<Publisher>) t;
+	public void Retrieve(List<Publisher> pList) {
 		Scanner retrieve = new Scanner(System.in);
 		System.out.println("Enter the Publisher Name or id number to retrieve a specific publisher");
 		System.out.println("Enter all to retrive all Publishers");
@@ -115,8 +111,7 @@ public class PublisherService {
 		
 	}
 
-	public void Update(Object t) {
-		List<Publisher> pList = (List<Publisher>) t;
+	public void Update(List<Publisher> pList) {
 		Publisher p = new Publisher();
 		int pos =-1;
 		Scanner update = new Scanner(System.in);
